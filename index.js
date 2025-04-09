@@ -31,7 +31,7 @@ let startserver = () => {
 
     app.use(
         cors({
-            origin: "https://aonebrokers.com/",
+            origin: "https://aonebrokers.com",
             methods: ["GET", "POST", "PUT", "DELETE"],
             credentials: true,
         })
