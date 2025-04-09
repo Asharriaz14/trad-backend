@@ -3,5 +3,5 @@ import { displaypersonaldetail, sendpersonaldetail } from "../controller/persona
 
 export let personaldetailroutes = express.Router()
 personaldetailroutes.route("/send").post(sendpersonaldetail)
-personaldetailroutes.route("/display").get(displaypersonaldetail)
+personaldetailroutes.route("/all/getdata").get(displaypersonaldetail)
 

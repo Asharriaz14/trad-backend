@@ -21,10 +21,10 @@ export let registeruser = async (req, res) => {
             password: hashedpassword
         });
 
-        
+
         let token = jwt.sign({ _id: newusershm._id }, process.env.secretkey, { expiresIn: "7d" });
 
-       
+
         res.cookie("logintoken", token, {
             httpOnly: true,
             secure: true,
@@ -57,20 +57,20 @@ export let loginuser = async (req, res) => {
             return res.status(400).json({ message: "Invalid credentials" });
         }
 
-        
+
         if (!process.env.secretkey) {
             console.error("Secret Key not found in .env");
             return res.status(500).json({ message: "Secret Key not found!" });
         }
 
         const logintoken = jwt.sign({ _id: user._id }, process.env.secretkey, { expiresIn: "7d" });
-        console.log("Generated Token:", logintoken);  
+        console.log("Generated Token:", logintoken);
 
-      
+
         res.cookie("logintoken", logintoken, {
             httpOnly: true,
-            secure: false,  
-            maxAge: 7 * 24 * 60 * 60 * 1000  
+            secure: false,
+            maxAge: 7 * 24 * 60 * 60 * 1000
         });
         // console.log(user._id)
         return res.status(200).json({ message: "Login successful", user, logintoken });
@@ -104,7 +104,7 @@ export let displayusers = async (req, res) => {
         if (!users) {
             return res.status(400).json({ message: "Error while fetching users" });
         }
-        return res.status(200).json({ message: "Fetched users successfully", users });
+        return res.status(200).json({ message: "Fetched users successfully", data:users });
     } catch (error) {
         console.log(error);
     }

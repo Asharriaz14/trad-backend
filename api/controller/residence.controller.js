@@ -44,3 +44,16 @@ export const getresidencedocs=async(req,res)=>{
         console.log(error)
     }
 }
+
+export let getallresidencialdocs=async (req,res)=>{
+  try {
+    let data= await residensedocs.find()
+    if(!data){
+      return res.status(400).json({message:"error while fetching data"})
+      
+    }
+    return res.status(200).json({message:"Data fetch sucessfully",data:data, count:data.length})
+  } catch (error) {
+    console.log(error)
+  }
+}

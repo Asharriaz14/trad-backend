@@ -63,9 +63,28 @@ export const displaymoneytranstions = async (req, res) => {
       count: transactions.length,
       data: transactions
     });
-
+    
   } catch (error) {
     console.error("Get data error:", error);
     return res.status(500).json({ message: "Server error" });
   }
 };
+
+export const displayallmoneytransactions=async(req,res)=>{
+  try {
+    let data=await Depositedmoneyshm.find()
+    if(!data){
+      return res.status(400).json({message:"Error while fetching data"})
+    }
+
+    return res.status(200).json({
+      message: "Transactions retrieved successfully",
+      count: data.length,
+      data: data
+    });
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
+ 

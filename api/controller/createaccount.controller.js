@@ -31,6 +31,20 @@ export let getaccountsdetails = async (req, res) => {
         console.log(error)
     }
 }
+export let getallaccounts = async (req, res) => {
+    try {
+        let accountsdetail = await createaccountshm.find()
+        if (!accountsdetail) {
+
+            return res.status(400).json({ message: "Accountsdetail not found" })
+        }
+        return res.status(200).json({ message: "Get accountsdetail sucessfully",
+            count:accountsdetail.length ,
+           data: accountsdetail })
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export let deleteaccount = async (req, res) => {
     try {
