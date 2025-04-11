@@ -23,19 +23,19 @@ connectdatabase();
 let startserver = () => {
     let app = express();
 
+        app.use(cors({
+        origin: ["https://aonebrokers.com", "https://www.aonebrokers.com"],
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        credentials: true,
+    }));
+
+    app.options("*", cors());
+
     // Middlewares
     app.use(express.json());
     app.use(express.text());
     app.use(cookieParser());
 
-
-    app.use(
-        cors({
-            origin: "https://aonebrokers.com",
-            methods: ["GET", "POST", "PUT", "DELETE"],
-            credentials: true,
-        })
-    );
 
 
     const __filename = fileURLToPath(import.meta.url);
